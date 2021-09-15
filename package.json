@@ -1,6 +1,6 @@
 {
-  "name": "diboot-mobile",
-  "version": "1.0.0",
+  "name": "diboot-mobile-ui",
+  "version": "2.3.1",
   "description": "diboot移动端前端框架",
   "main": "main.js",
   "scripts": {
