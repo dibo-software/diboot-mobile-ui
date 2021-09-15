@@ -1,0 +1,15 @@
+{
+  "name": "diboot-mobile",
+  "version": "1.0.0",
+  "description": "diboot移动端前端框架",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jweixin-module": "^1.6.0"
+  }
+}

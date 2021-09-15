@@ -1,0 +1,56 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [
+		{
+            "path" : "pages/login/login",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+            "path" : "pages/home/home",
+            "style": {
+            	"navigationBarTitleText": "首页",
+            	"navigationStyle":"custom"
+            }
+            
+        },
+		{
+            "path" : "pages/personal/personal",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "diboot-mobile",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+	    "color": "#7A7E83",
+	    "selectedColor": "#a9ea4c",
+	    "borderStyle": "black",
+	    "backgroundColor": "#ffffff",
+	    "list": [{
+	        "pagePath": "pages/home/home",
+	        "iconPath": "static/images/home.png",
+	        "selectedIconPath": "static/images/home_selected.png",
+	        "text": "首页"
+	    }, {
+	        "pagePath": "pages/personal/personal",
+	        "iconPath": "static/images/personal.png",
+	        "selectedIconPath": "static/images/personal_selected.png",
+	        "text": "个人中心"
+	    }]
+	}
+}
