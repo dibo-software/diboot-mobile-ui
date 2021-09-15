@@ -10,7 +10,7 @@ const ENV = 'dev'
 
 // 后端多环境配置
 const hostConfig = {
-	dev: "http://192.168.0.104:8086/mobile-rest",
+	dev: "http://localhost:8080/api",
 	test: "",
 	prod: ""
 }
@@ -18,8 +18,7 @@ const hostConfig = {
  * 前端页面配置(公众号重定向需要)
  */
 const frontIndexConfig = {
-	dev: "http://dev.dibo.ltd/mobile-frontend/",
-	// dev: "http://4n2b338073.uicp.fun:8080/mobile-frontend/",
+	dev: "http://www.diboot.com", // 自行替换
 	test: "",
 	prod: ""
 }

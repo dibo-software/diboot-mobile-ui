@@ -13,14 +13,14 @@ import dibootApi from './utils/dibootApi.js'
 import constant from './utils/constant.js'
 import Member from './classes/class.member.js'
 import PwdLogin from './classes/class.pwd.login.js'
-import MpLogin from './classes/class.mp.login.js'
+// import MpLogin from './classes/class.mp.login.js'
 import MiniLogin from './classes/class.mini.login.js'
 
 Vue.prototype.$dibootApi = dibootApi
 Vue.prototype.$cons = constant
 Vue.prototype.$member = new Member
 Vue.prototype.$pwdLogin = new PwdLogin
-Vue.prototype.$mpLogin = new MpLogin
+// Vue.prototype.$mpLogin = new MpLogin
 Vue.prototype.$miniLogin = new MiniLogin
 
 const app = new Vue({
