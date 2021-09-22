@@ -2,13 +2,13 @@
   "name": "diboot-mobile-ui",
   "version": "2.3.1",
   "description": "diboot移动端前端框架",
+  "author": "www.diboot.com",
+  "license": "ISC",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "jweixin-module": "^1.6.0"
   }
