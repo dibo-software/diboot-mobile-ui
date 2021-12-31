@@ -1,4 +1,4 @@
-import dibootApi from '@/utils/dibootApi.js'
+import {service as dibootApi} from '@/utils/dibootApi.js'
 export default class Member {
 	constructor(){
 		this.$vue = null
@@ -24,11 +24,18 @@ export default class Member {
 	 * 获取用户信息
 	 */
 	async getMemberInfo() {
-		const res = await dibootApi.get('/h5/auth/userInfo')
+		const res = await dibootApi.get('/h5/userInfo')
 		if (res.code === 0) {
-			uni.setStorageSync("member", JSON.stringify(res.data))
+			uni.setStorageSync("userInfo", JSON.stringify(res.data))
 		} else {
-			console.log('login错误：', res)
+			console.log('加载用户错误：', res)
+			uni.clearStorageSync()
+			let timer = setTimeout(() => {
+				clearTimeout(timer)
+			      uni.redirectTo({
+			          url: 'pages/login/login'
+			      })
+			  }, 0)
 		}
 	}
 }

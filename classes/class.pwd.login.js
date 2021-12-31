@@ -1,4 +1,4 @@
-import dibootApi from '@/utils/dibootApi.js'
+import {service as dibootApi} from '@/utils/dibootApi.js'
 import Member from './class.member.js'
 
 export default class PwdLogin extends Member {
@@ -15,6 +15,7 @@ export default class PwdLogin extends Member {
 				const res = await dibootApi.post('/h5/auth/login', form)
 				if(res.code === 0) {
 					uni.setStorageSync("authtoken", res.data)
+					this.getMemberInfo()
 					let tipMsg = { title: '登录成功', type: 'success' }
 					this.$tip ? this.$tip.show(tipMsg) : uni.showToast(tipMsg)
 					reslove({code: true})
