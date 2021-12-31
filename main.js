@@ -1,15 +1,16 @@
-import Vue from 'vue';
-import App from './App';
+import App from './App'
 
-Vue.config.productionTip = false;
+// #ifndef VUE3
+import Vue from 'vue'
+import {setTip} from '@/utils/common.js'
+import color from '@/utils/color.js'
+Vue.config.productionTip = false
+App.mpType = 'app'
 
-App.mpType = 'app';
-
-// 引入全局uView
-import uView from 'uview-ui';
+import uView from "uview-ui";
 Vue.use(uView);
 
-import dibootApi from './utils/dibootApi.js'
+import {dibootApi} from './utils/dibootApi.js'
 import constant from './utils/constant.js'
 import Member from './classes/class.member.js'
 import PwdLogin from './classes/class.pwd.login.js'
@@ -23,8 +24,21 @@ Vue.prototype.$pwdLogin = new PwdLogin
 // Vue.prototype.$mpLogin = new MpLogin
 Vue.prototype.$miniLogin = new MiniLogin
 
+Vue.prototype.$tip = setTip
+Vue.prototype.$color = color
+
 const app = new Vue({
-	...App
-}).$mount();
+    ...App
+})
+app.$mount()
+// #endif
 
-
+// #ifdef VUE3
+import { createSSRApp } from 'vue'
+export function createApp() {
+  const app = createSSRApp(App)
+  return {
+    app
+  }
+}
+// #endif

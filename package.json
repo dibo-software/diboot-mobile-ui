@@ -1,6 +1,6 @@
 {
   "name": "diboot-mobile-ui",
-  "version": "2.3.1",
+  "version": "2.4.0s",
   "description": "diboot移动端前端框架",
   "author": "www.diboot.com",
   "license": "ISC",
@@ -10,6 +10,5 @@
   },
   "keywords": [],
   "dependencies": {
-    "jweixin-module": "^1.6.0"
   }
 }
