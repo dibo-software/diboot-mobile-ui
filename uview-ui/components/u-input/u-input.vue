@@ -213,7 +213,13 @@ export default {
 		showConfirmbar:{
 			type:Boolean,
 			default:true
+		},
+		//适配diboot
+		adapterDiboot: {
+			type: Boolean,
+			default: true
 		}
+
 	},
 	data() {
 		return {
@@ -326,7 +332,11 @@ export default {
 			this.$emit('confirm', e.detail.value);
 		},
 		onClear(event) {
-			this.$emit('input', '');
+			this.adapterDiboot ? this.handleInput({
+				detail: {
+					value: ''
+				}
+			}) : this.$emit('input', '')
 		},
 		inputClick() {
 			this.$emit('click');
