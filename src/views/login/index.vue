@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import useAuthStore from '@/stores/auth'
+import useVh from "@/hooks/use-vh";
 import JSEncrypt from 'jsencrypt'
 
 const encryptor = new JSEncrypt()
@@ -13,9 +14,7 @@ BwIDAQAB`)
 
 const authStore = useAuthStore()
 const loading = ref(false)
-const PROCESS_USERNAME = 'maql'
-const PASSWORD = 'Dibo306!'
-const model = reactive({ username: PROCESS_USERNAME, password: PASSWORD, captcha: '', traceId: '' })
+const model = reactive({ username: 'admin', password: '123456', captcha: '', traceId: '' })
 
 const refreshTraceId = () => {
   model.traceId = Math.random().toString(36).slice(-8) + +new Date()
@@ -39,7 +38,7 @@ const redirect = () => {
 const onSubmit = () => {
   loading.value = true
   authStore
-    .login({ ...model, password: encryptor.encrypt(model.password) })
+      .login({ ...model, password: encryptor.encrypt(model.password) })
     .then(() => {
       redirect()
       loading.value = false
@@ -49,14 +48,14 @@ const onSubmit = () => {
       loading.value = false
     })
 }
-
+//使用路由中配置的高度
+const { storeRouteVh } = useVh()
+storeRouteVh()
 </script>
 
 <template>
   <div class="content">
-
     <van-form @submit="onSubmit">
-      <h2 style="text-align: center">Diboot 移动端 v3.0</h2>
       <van-cell-group inset>
         <van-field
           v-model="model.username"

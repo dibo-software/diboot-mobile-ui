@@ -1,6 +1,6 @@
 {
   "name": "diboot-mobile-ui",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -12,11 +12,13 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
-    "@vant/area-data": "^1.5.1",
+    "@vant/area-data": "^1.5.0",
     "@vant/use": "^1.6.0",
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-vue": "^5.1.12",
     "axios": "^1.6.8",
+    "bpmn-js": "^11.1.0",
+    "diagram-js": "^11.4.1",
     "jsencrypt": "^3.3.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
@@ -33,7 +35,7 @@
     "@types/node": "^18.15.11",
     "@types/qs": "^6.9.12",
     "@vicons/utils": "^0.1.4",
-    "@vitejs/plugin-vue": "^5.0.4",
+    "@vitejs/plugin-vue": "^4.1.0",
     "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/eslint-config-typescript": "^13.0.0",
     "@vue/tsconfig": "^0.5.1",
