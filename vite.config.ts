@@ -5,26 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
-import fs from 'fs'
 
-const optimizeDepsElementPlusIncludes = [
-  'vue',
-  'vant/es',
-  'pinia',
-  'pinia-plugin-persist',
-  'vue-router',
-  'axios',
-  '@wangeditor/editor',
-  '@wangeditor/editor-for-vue',
-  '@vant/area-data'
-]
-fs.readdirSync(`./node_modules/vant/es`).map(dirname => {
-  fs.access(`./node_modules/vant/es/${dirname}/style/index.mjs`, err => {
-    if (!err) {
-      optimizeDepsElementPlusIncludes.push(`vant/es/${dirname}/style/index`)
-    }
-  })
-})
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -81,14 +62,11 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  optimizeDeps: {
-    include: optimizeDepsElementPlusIncludes
-  },
   server: {
     host: true,
     port: 5120,
     proxy: {
-      '/api': 'http://localhost:8085'
+      '/api': 'http://localhost:8080'
     }
   }
 })

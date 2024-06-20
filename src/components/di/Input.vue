@@ -181,23 +181,6 @@ const checkFileHandle = (file: File | File[]) => {
     :rules="rules"
     @update:model-value="handleChange"
   />
-  <template v-else-if="config.type === 'rich'">
-    <van-field :name="config.prop" :label="config.label" :required="config.required" :rules="rules">
-      <template #input />
-    </van-field>
-    <rich-read
-      v-if="config.disabled || disabled"
-      :value="`${value ?? ''}`"
-      :style="{ flex: 1, height: config.height }"
-    />
-    <rich-editor
-      v-else
-      v-model="value"
-      :placeholder="config.placeholder"
-      :mode="config.mode"
-      :style="{ height: config.height }"
-    />
-  </template>
   <van-field
     v-if="config.type === 'input-number'"
     v-model="value"

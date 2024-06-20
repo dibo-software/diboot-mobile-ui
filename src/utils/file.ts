@@ -23,12 +23,6 @@ export const imageBindSrc = (file: FileRecord) => {
   }
 }
 
-const isWeChat = () => {
-  const ua = window.navigator.userAgent.toLowerCase()
-  //ua中是否含有MicroMessenger字符串，判断是否是微信浏览器
-  return ua.indexOf('micromessenger') > -1
-}
-
 /**
  * 下载文件
  *
@@ -37,11 +31,6 @@ const isWeChat = () => {
  * @param onDownloadProgress
  */
 export const fileDownload = (url: string, params?: unknown, onDownloadProgress?: (percentage: number) => void) => {
-  if (isWeChat()) {
-    window.location.href = `${window.location.origin}${baseURL}${url}`
-    return
-  }
-
   if (isExternal(url)) window.open(url + (/\?/.test(url) ? '&' : '?') + qs.stringify(params, { arrayFormat: 'repeat' }))
   else {
     return new Promise<void>((resolve, reject) => {
