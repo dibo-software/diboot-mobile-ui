@@ -6,6 +6,7 @@ const props = defineProps<{
   formName?: string
   disabled?: boolean
   primaryKey?: string
+  disabledProps?: string[]
   invisibleProps?: string[]
   form: ConcreteComponent
 }>()
@@ -17,8 +18,13 @@ pagination.pageSize = 999
 
 defineExpose({
   addCondition: (key: string, value: unknown, refresh = false) => {
-    queryParam[key] = value
+    queryParam[key] = value as any
     if (refresh) onSearch()
+  },
+  validate: async () => {
+    for (let item of dataList) {
+      await (item._el as any).validate?.()
+    }
   },
   getData: async () => {
     const list: Record<string, unknown>[] = []
@@ -38,7 +44,8 @@ const activeNames = ref<string[]>([])
       <van-collapse-item
         :key="`${item[primaryKey || 'id'] ?? item._uid}`"
         :name="`${item[primaryKey || 'id'] ?? item._uid}`"
-        :title="`${index + 1}、${formName ?? ''}`"
+        :title="`${formName ?? ''} ${index + 1}、`"
+        :lazy-render="false"
         v-for="(item, index) in dataList"
       >
         <component
@@ -46,37 +53,44 @@ const activeNames = ref<string[]>([])
           :ref="
             (el?: any) => el && !item._el && !!(item._el = el) && el.init(item[primaryKey || 'id'], true, _toRaw(item))
           "
+          inside
+          :disabled="disabled"
+          :disabled-props="disabledProps"
+          :invisible-props="invisibleProps"
         />
-        <van-button
-          v-if="!disabled && !invisibleProps?.includes('APPEND_FLAG__')"
-          icon="description"
-          type="success"
-          size="small"
-          plain
-          style="width: 100%"
-          @click="
-            async () =>
-              dataList.splice(index + 1, 0, {
-                ...(await (item._el as any).getData()),
-                [props.primaryKey || 'id']: void 0,
-                _uid: +new Date(),
-                _el: void 0
-              })
-          "
-          :style="{ marginBottom: '8px' }"
-          >复制</van-button
-        >
-        <van-button
-          v-if="!disabled && !invisibleProps?.includes('REMOVE_FLAG__')"
-          icon="delete-o"
-          type="danger"
-          size="small"
-          plain
-          style="width: 100%"
-          @click="dataList.splice(index, 1)"
-        >
-          删除
-        </van-button>
+        <div style="display: flex; justify-content: space-between">
+          <van-button
+            v-if="!disabled && !invisibleProps?.includes('REMOVE_FLAG__')"
+            icon="delete-o"
+            type="danger"
+            size="small"
+            plain
+            style="width: 33%"
+            @click="dataList.splice(index, 1)"
+          >
+            {{ $t('operation.delete') }}
+          </van-button>
+          <van-button
+            v-if="!disabled && !invisibleProps?.includes('APPEND_FLAG__')"
+            icon="description"
+            type="success"
+            size="small"
+            plain
+            style="width: 66%"
+            @click="
+              async () =>
+                dataList.splice(index + 1, 0, {
+                  ...(await (item._el as any).getData()),
+                  [props.primaryKey || 'id']: void 0,
+                  _uid: +new Date(),
+                  _el: void 0
+                })
+            "
+            :style="{ marginBottom: '8px' }"
+          >
+            {{ $t('operation.copy') }}
+          </van-button>
+        </div>
       </van-collapse-item>
     </van-collapse>
     <van-button
@@ -88,7 +102,7 @@ const activeNames = ref<string[]>([])
       style="width: calc(100% - 20px); display: block; margin: auto"
       @click="dataList.push({ _uid: +new Date() })"
     >
-      添加
+      {{ $t('operation.create') }}
     </van-button>
   </div>
 </template>
